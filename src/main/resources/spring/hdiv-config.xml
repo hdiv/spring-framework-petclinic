@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hdiv="http://www.hdiv.org/schema/hdiv-ee"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.hdiv.org/schema/hdiv-ee http://www.hdiv.org/schema/hdiv/hdiv-ee.xsd">
+    <hdiv:config>
+        <hdiv:sessionExpired homePage="/" />
+        <hdiv:startPages method="get">/</hdiv:startPages>
+        <hdiv:startPages method="get">/resources/.*
+        </hdiv:startPages>
+        <hdiv:startPages method="get">/webjars/.*</hdiv:startPages>
+    </hdiv:config>
+    <hdiv:editableValidations>
+        <hdiv:validationRule url=".*"></hdiv:validationRule>
+    </hdiv:editableValidations>
+</beans>

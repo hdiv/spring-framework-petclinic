@@ -15,6 +15,8 @@
  */
 package org.springframework.samples.petclinic;
 
+import org.hdiv.filter.ValidatorFilter;
+import org.hdiv.listener.InitListener;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -23,6 +25,7 @@ import org.springframework.web.servlet.support.AbstractDispatcherServletInitiali
 
 import javax.servlet.Filter;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 
 /**
@@ -54,7 +57,7 @@ public class PetclinicInitializer extends AbstractDispatcherServletInitializer {
     @Override
     protected WebApplicationContext createRootApplicationContext() {
         XmlWebApplicationContext rootAppContext = new XmlWebApplicationContext();
-        rootAppContext.setConfigLocations("classpath:spring/business-config.xml", "classpath:spring/tools-config.xml");
+        rootAppContext.setConfigLocations("classpath:spring/business-config.xml", "classpath:spring/tools-config.xml", "classpath:spring/hdiv-config.xml");
         rootAppContext.getEnvironment().setDefaultProfiles(SPRING_PROFILE);
         return rootAppContext;
     }
@@ -68,14 +71,22 @@ public class PetclinicInitializer extends AbstractDispatcherServletInitializer {
 
     @Override
     protected String[] getServletMappings() {
-        return new String[]{"/"};
+        return new String[]{"/", "/"};
     }
 
     @Override
     protected Filter[] getServletFilters() {
         // Used to provide the ability to enter Chinese characters inside the Owner Form
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter("UTF-8", true);
-        return new Filter[]{characterEncodingFilter};
+        
+        // Hdiv Filter
+        ValidatorFilter validatorFilter = new ValidatorFilter();
+        return new Filter[]{characterEncodingFilter, validatorFilter };
     }
 
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
+        servletContext.addListener(new InitListener());
+    }
 }

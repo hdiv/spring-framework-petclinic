@@ -268,6 +268,16 @@
             <version>${activation.version}</version>
         </dependency>
 
+		<dependency>
+		    <groupId>org.hdiv.ee</groupId>
+		    <artifactId>hdiv-ee-config</artifactId>
+		    <version>${hdiv-ee-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.hdiv.ee</groupId>
+		    <artifactId>hdiv-ee-spring-mvc</artifactId>
+		    <version>${hdiv-ee-version}</version>
+		</dependency>
     </dependencies>
 
     <!-- Maven plugin versions are mentioned in order to guarantee the build reproducibility in the long term -->
