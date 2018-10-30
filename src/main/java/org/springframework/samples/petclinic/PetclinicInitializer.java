@@ -71,7 +71,7 @@ public class PetclinicInitializer extends AbstractDispatcherServletInitializer {
 
     @Override
     protected String[] getServletMappings() {
-        return new String[]{"/", "/"};
+        return new String[]{"/"};
     }
 
     @Override
