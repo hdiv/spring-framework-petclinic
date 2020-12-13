@@ -7,8 +7,8 @@ http://www.hdiv.org/schema/hdiv-ee http://www.hdiv.org/schema/hdiv/hdiv-ee.xsd">
     <hdiv:config>
         <hdiv:sessionExpired homePage="/" />
         <hdiv:startPages method="get">/</hdiv:startPages>
-        <hdiv:startPages method="get">/resources/.*
-        </hdiv:startPages>
+        <hdiv:startPages method="get">/favicon.ico</hdiv:startPages>
+        <hdiv:startPages method="get">/resources/.*</hdiv:startPages>
         <hdiv:startPages method="get">/webjars/.*</hdiv:startPages>
     </hdiv:config>
     <hdiv:editableValidations>
